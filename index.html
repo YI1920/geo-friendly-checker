@@ -70,16 +70,16 @@
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="/">
-        <img src="/img/logo.png" alt="星图邻 XingTuLink" />
+        <img src="/img/logo.png" alt="星图邻 XingTuLink" data-i18n-attr="alt:brand.alt" />
       </a>
-      <button class="nav-toggle" aria-label="菜单">☰</button>
+      <button class="nav-toggle" aria-label="菜单" data-i18n-attr="aria-label:lang.label">☰</button>
       <nav class="nav-links">
-        <a href="/" class="active">首页</a>
-        <a href="/tools/geo-checker/">GEO 检测</a>
-        <a href="/tools/json-ld-generator/">JSON-LD 生成器</a>
-        <a href="/about-geo/">关于 GEO</a>
-        <a href="/contact/">联系我们</a>
-        <a class="nav-cta" href="https://zsoftym.com/" data-external="1">栈上月明官网 →</a>
+        <a href="/" class="active" data-i18n="nav.home">首页</a>
+        <a href="/tools/geo-checker/" data-i18n="nav.geo-check">GEO 检测</a>
+        <a href="/tools/json-ld-generator/" data-i18n="nav.jsonld">JSON-LD 生成器</a>
+        <a href="/about-geo/" data-i18n="nav.about-geo">关于 GEO</a>
+        <a href="/contact/" data-i18n="nav.contact">联系我们</a>
+        <a class="nav-cta" href="https://zsoftym.com/" data-external="1" data-i18n="nav.zsoftym">栈上月明官网 →</a>
       </nav>
     </div>
   </header>
@@ -87,15 +87,15 @@
   <main>
     <section class="hero">
       <div class="container">
-        <span class="eyebrow">西安栈上月明软件科技有限公司 出品</span>
-        <h1>让 AI 搜索引擎<span class="gradient-text">主动推荐</span>你的品牌</h1>
-        <p class="lead">
+        <span class="eyebrow" data-i18n="home.eyebrow">西安栈上月明软件科技有限公司 出品</span>
+        <h1><span data-i18n="home.hero.h1.part1">让 AI 搜索引擎</span><span class="gradient-text" data-i18n="home.hero.h1.part2">主动推荐</span><span data-i18n="home.hero.h1.part3">你的品牌</span></h1>
+        <p class="lead" data-i18n="home.hero.lead">
           星图邻（XingTuLink）提供面向生成式 AI 时代的免费在线工具：GEO 友好度检测、结构化数据生成、开源项目发布。
           工具即用、数据不上传，助力你的网站在豆包、文心一言、Kimi、ChatGPT 回答中脱颖而出。
         </p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="/tools/geo-checker/">开始 GEO 检测 →</a>
-          <a class="btn btn-ghost" href="/tools/json-ld-generator/">生成 JSON-LD</a>
+          <a class="btn btn-primary" href="/tools/geo-checker/" data-i18n="home.hero.cta-primary">开始 GEO 检测 →</a>
+          <a class="btn btn-ghost" href="/tools/json-ld-generator/" data-i18n="home.hero.cta-ghost">生成 JSON-LD</a>
         </div>
       </div>
     </section>
@@ -105,24 +105,24 @@
         <div class="grid grid-2">
           <a class="card" href="/tools/geo-checker/">
             <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg></span>
-            <h3>GEO 友好度检测器</h3>
-            <p style="color:var(--text-soft);">
+            <h3 data-i18n="home.card.geo.title">GEO 友好度检测器</h3>
+            <p style="color:var(--text-soft);" data-i18n="home.card.geo.desc">
               输入 URL 或粘贴 HTML 源码，4 个维度、100 分制自动评估，给出可落地的优化清单与优先级。
             </p>
-            <span class="chip">结构化数据 · Meta · 内容语义 · AI 可读性</span>
+            <span class="chip" data-i18n="home.card.geo.chip">结构化数据 · Meta · 内容语义 · AI 可读性</span>
             <div style="margin-top:20px;">
-              <span class="btn btn-ghost" style="pointer-events:none;">立即使用 →</span>
+              <span class="btn btn-ghost" style="pointer-events:none;" data-i18n="btn.use-now">立即使用 →</span>
             </div>
           </a>
           <a class="card" href="/tools/json-ld-generator/">
             <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg></span>
-            <h3>JSON-LD 生成器</h3>
-            <p style="color:var(--text-soft);">
+            <h3 data-i18n="home.card.jsonld.title">JSON-LD 生成器</h3>
+            <p style="color:var(--text-soft);" data-i18n="home.card.jsonld.desc">
               6 种 Schema 类型（Organization / Article / FAQ / HowTo / Product / LocalBusiness），表单填写即可生成可粘贴的代码。
             </p>
-            <span class="chip">Schema.org 标准 · 实时预览 · 一键复制</span>
+            <span class="chip" data-i18n="home.card.jsonld.chip">Schema.org 标准 · 实时预览 · 一键复制</span>
             <div style="margin-top:20px;">
-              <span class="btn btn-ghost" style="pointer-events:none;">立即使用 →</span>
+              <span class="btn btn-ghost" style="pointer-events:none;" data-i18n="btn.use-now">立即使用 →</span>
             </div>
           </a>
         </div>
@@ -132,27 +132,27 @@
     <section>
       <div class="container">
         <div style="text-align:center;margin-bottom:36px;">
-          <span class="eyebrow">为什么需要 GEO</span>
-          <h2>传统 SEO 之后，下一代流量入口</h2>
-          <p class="lead" style="margin:8px auto 0;">
+          <span class="eyebrow" data-i18n="home.why.eyebrow">为什么需要 GEO</span>
+          <h2 data-i18n="home.why.h2">传统 SEO 之后，下一代流量入口</h2>
+          <p class="lead" style="margin:8px auto 0;" data-i18n="home.why.lead">
             当用户开始向 AI 提问而非搜索关键词，能否被 AI 引用，取决于你网站的结构化程度。
           </p>
         </div>
         <div class="grid grid-3">
           <div class="card">
-            <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="2"></rect><path d="M12 8V4M9 3h6M9 13h.01M15 13h.01"></path></svg></span>
-            <h3>被 AI 主动引用</h3>
-            <p style="color:var(--text-soft);">JSON-LD、FAQ、HowTo 等结构化数据让大模型能"读懂"你的页面，更容易被引用为答案。</p>
+            <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="2"></rect><path d="M12 8V4M9 3h6M9 13h.01M15 13h.01M9 17h.01M15 17h.01"></path></svg></span>
+            <h3 data-i18n="home.why.cited.title">被 AI 主动引用</h3>
+            <p style="color:var(--text-soft);" data-i18n="home.why.cited.desc">JSON-LD、FAQ、HowTo 等结构化数据让大模型能"读懂"你的页面，更容易被引用为答案。</p>
           </div>
           <div class="card">
             <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"></path><path d="M21 7v5h-5"></path></svg></span>
-            <h3>抢跑 AI 搜索</h3>
-            <p style="color:var(--text-soft);">豆包、Kimi、文心一言、ChatGPT 已成新流量入口，GEO 优化比同行早一步占位。</p>
+            <h3 data-i18n="home.why.early.title">抢跑 AI 搜索</h3>
+            <p style="color:var(--text-soft);" data-i18n="home.why.early.desc">豆包、Kimi、文心一言、ChatGPT 已成新流量入口，GEO 优化比同行早一步占位。</p>
           </div>
           <div class="card">
             <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.2 7.5-8 9-4.8-1.5-8-4.5-8-9V6l8-3z"></path></svg></span>
-            <h3>本地优先 · 数据安全</h3>
-            <p style="color:var(--text-soft);">所有分析在你的浏览器内完成，URL 与 HTML 源码不会上传到任何服务器。</p>
+            <h3 data-i18n="home.why.safe.title">本地优先 · 数据安全</h3>
+            <p style="color:var(--text-soft);" data-i18n="home.why.safe.desc">所有分析在你的浏览器内完成，URL 与 HTML 源码不会上传到任何服务器。</p>
           </div>
         </div>
       </div>
@@ -163,19 +163,19 @@
         <div class="grid grid-4">
           <div class="card" style="text-align:center;">
             <div class="stat-num gradient-text">100</div>
-            <p style="color:var(--text-soft);margin:0;">评分维度全</p>
+            <p style="color:var(--text-soft);margin:0;" data-i18n="home.stat.100">评分维度全</p>
           </div>
           <div class="card" style="text-align:center;">
             <div class="stat-num gradient-text">6</div>
-            <p style="color:var(--text-soft);margin:0;">Schema 类型</p>
+            <p style="color:var(--text-soft);margin:0;" data-i18n="home.stat.6">Schema 类型</p>
           </div>
           <div class="card" style="text-align:center;">
             <div class="stat-num gradient-text">0</div>
-            <p style="color:var(--text-soft);margin:0;">数据上传</p>
+            <p style="color:var(--text-soft);margin:0;" data-i18n="home.stat.0">数据上传</p>
           </div>
           <div class="card" style="text-align:center;">
             <div class="stat-num gradient-text">∞</div>
-            <p style="color:var(--text-soft);margin:0;">免费使用</p>
+            <p style="color:var(--text-soft);margin:0;" data-i18n="home.stat.inf">免费使用</p>
           </div>
         </div>
       </div>
@@ -184,13 +184,13 @@
     <section>
       <div class="container">
         <div class="cta-banner">
-          <span class="eyebrow">需要专业服务？</span>
-          <h2>让栈上月明为你的品牌做一次<span class="gradient-text">深度 GEO 优化</span></h2>
-          <p>
+          <span class="eyebrow" data-i18n="home.cta.eyebrow">需要专业服务？</span>
+          <h2><span data-i18n="home.cta.h2.part1">让栈上月明为你的品牌做一次</span><span class="gradient-text" data-i18n="home.cta.h2.part2">深度 GEO 优化</span></h2>
+          <p data-i18n="home.cta.desc">
             星图邻的工具用于自检与日常优化；如果你的业务需要面向豆包、Kimi、文心一言、ChatGPT 的全链路 GEO 服务，
             欢迎联系我们的母公司——西安栈上月明软件科技有限公司。
           </p>
-          <a class="btn btn-primary" href="https://zsoftym.com/" data-external="1">访问栈上月明官网 →</a>
+          <a class="btn btn-primary" href="https://zsoftym.com/" data-external="1" data-i18n="btn.visit-zsoftym">访问栈上月明官网 →</a>
         </div>
       </div>
     </section>
@@ -201,45 +201,51 @@
       <div class="footer-grid">
         <div>
           <a class="brand" href="/">
-            <img src="/img/logo.png" alt="星图邻" />
+            <img src="/img/logo.png" alt="星图邻" data-i18n-attr="alt:brand.alt" />
           </a>
-          <p style="margin-top:14px;">
+          <p style="margin-top:14px;" data-i18n="footer.desc">
             在线工具与开源项目发布平台。<br />
             连接工具与创作者，点亮数字星图。
           </p>
+          <div class="footer-social">
+            <a href="https://github.com/ZSoftYM/geo-friendly-checker" target="_blank" rel="noopener noreferrer" title="开源仓库 · GitHub" aria-label="GitHub" data-i18n-attr="title:brand.github.title">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.63 22.42c.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.27-5.24-5.65 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.04 11.04 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.73.8 1.18 1.82 1.18 3.07 0 4.39-2.69 5.36-5.25 5.64.41.35.78 1.04.78 2.11 0 1.52-.01 2.75-.01 3.13 0 .3.21.66.79.55A11.5 11.5 0 0 0 12 .5z"/></svg>
+            </a>
+          </div>
         </div>
         <div>
-          <h4>工具</h4>
+          <h4 data-i18n="footer.title.tools">工具</h4>
           <ul>
-            <li><a href="/tools/geo-checker/">GEO 友好度检测</a></li>
-            <li><a href="/tools/json-ld-generator/">JSON-LD 生成器</a></li>
-            <li><a href="/about-geo/">GEO 知识库</a></li>
+            <li><a href="/tools/geo-checker/" data-i18n="footer.tools.geo">GEO 友好度检测</a></li>
+            <li><a href="/tools/json-ld-generator/" data-i18n="footer.tools.jsonld">JSON-LD 生成器</a></li>
+            <li><a href="/about-geo/" data-i18n="footer.tools.kb">GEO 知识库</a></li>
           </ul>
         </div>
         <div>
-          <h4>公司</h4>
+          <h4 data-i18n="footer.title.company">公司</h4>
           <ul>
-            <li><a href="https://zsoftym.com/" data-external="1">栈上月明官网</a></li>
-            <li><a href="/contact/">联系我们</a></li>
-            <li><a href="/contact/#privacy">隐私政策</a></li>
+            <li><a href="https://zsoftym.com/" data-external="1" data-i18n="footer.company.zsoftym">栈上月明官网</a></li>
+            <li><a href="/contact/" data-i18n="footer.company.contact">联系我们</a></li>
+            <li><a href="/contact/#privacy" data-i18n="footer.company.privacy">隐私政策</a></li>
           </ul>
         </div>
         <div>
-          <h4>联系</h4>
+          <h4 data-i18n="footer.title.contact">联系</h4>
           <ul>
-            <li>电话：+86 176 2902 0227</li>
-            <li>邮箱：guohao@zsymtech.cn</li>
-            <li>西安 · 陕西</li>
+            <li data-i18n="footer.contact.phone">电话：+86 176 2902 0227</li>
+            <li data-i18n="footer.contact.email">邮箱：guohao@zsymtech.cn</li>
+            <li data-i18n="footer.contact.addr">西安 · 陕西</li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 西安栈上月明软件科技有限公司 · 星图邻 XingTuLink</span>
+        <span data-i18n="footer.copyright">© 2026 西安栈上月明软件科技有限公司 · 星图邻 XingTuLink</span>
         <span><a href="https://zsoftym.com/" data-external="1">zsoftym.com</a></span>
       </div>
     </div>
   </footer>
 
+  <script src="/public/i18n.js"></script>
   <script src="/public/site.js"></script>
 </body>
 </html>

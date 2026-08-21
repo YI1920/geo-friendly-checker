@@ -1,9 +1,192 @@
 /* =========================================================
    JSON-LD 生成器
    支持：Organization / Article / FAQ / HowTo / Product / LocalBusiness
+   支持中英双语（通过 window.XTLi18n / xtl:langchange 事件）
    ========================================================= */
 (function () {
   const $ = (s, r) => (r || document).querySelector(s);
+
+  // ---------- 表单 Label / Desc 的中英文映射 ----------
+  const SCHEMA_I18N = {
+    "zh-CN": {
+      orgTitle: "Organization · 组织信息",
+      orgDesc: "适用于品牌官网、About 页面。",
+      artTitle: "Article · 文章",
+      artDesc: "适用于博客、新闻、教程文章。",
+      faqTitle: "FAQ · 常见问答",
+      faqDesc: "输入 Q&A，自动生成 FAQPage 结构。",
+      howtoTitle: "HowTo · 操作步骤",
+      howtoDesc: "适用于教程、流程类内容。",
+      prodTitle: "Product · 产品",
+      prodDesc: "适用于商品页。",
+      localTitle: "LocalBusiness · 本地商家",
+      localDesc: "适用于门店、线下服务商家。",
+      // fields
+      fld_org_name: "组织名称 *",
+      fld_org_url: "官网 URL *",
+      fld_org_logo: "Logo URL",
+      fld_org_desc: "简介",
+      fld_org_phone: "客服电话",
+      fld_org_email: "联系邮箱",
+      fld_org_sameas: "社交/其他链接（逗号分隔）",
+
+      fld_art_headline: "标题 *",
+      fld_art_author: "作者 *",
+      fld_art_date: "发布日期 * (YYYY-MM-DD)",
+      fld_art_image: "封面图 URL",
+      fld_art_desc: "摘要",
+      fld_art_url: "文章 URL *",
+
+      fld_faq_q1: "问题 1 *",
+      fld_faq_a1: "答案 1 *",
+      fld_faq_q2: "问题 2",
+      fld_faq_a2: "答案 2",
+      fld_faq_q3: "问题 3",
+      fld_faq_a3: "答案 3",
+
+      fld_ht_name: "教程名称 *",
+      fld_ht_time: "总耗时（ISO 8601，如 PT5M）",
+      fld_ht_step1: "步骤 1 *",
+      fld_ht_step2: "步骤 2",
+      fld_ht_step3: "步骤 3",
+      fld_ht_step4: "步骤 4",
+      fld_ht_step5: "步骤 5",
+
+      fld_prod_name: "产品名 *",
+      fld_prod_image: "产品图 URL",
+      fld_prod_desc: "描述",
+      fld_prod_brand: "品牌",
+      fld_prod_sku: "SKU",
+
+      fld_lb_name: "商家名 *",
+      fld_lb_street: "街道地址 *",
+      fld_lb_phone: "电话",
+      fld_lb_url: "官网 URL",
+      fld_lb_hours: "营业时间（Mo-Fr 09:00-18:00）",
+
+      tipRequired: "提示：标记 * 的必填字段为空时，预览仍会生成，但请补全后再发布。",
+      copyOkScript: "✓ 已复制（含 <script> 包裹）",
+      copyOkFallback: "✓ 已复制",
+    },
+    en: {
+      orgTitle: "Organization · Info",
+      orgDesc: "For brand websites and About pages.",
+      artTitle: "Article",
+      artDesc: "For blog posts, news and tutorial articles.",
+      faqTitle: "FAQ",
+      faqDesc: "Enter Q&A pairs to auto-generate FAQPage markup.",
+      howtoTitle: "HowTo · Steps",
+      howtoDesc: "For tutorials and step-by-step content.",
+      prodTitle: "Product",
+      prodDesc: "For product pages.",
+      localTitle: "LocalBusiness",
+      localDesc: "For storefronts and local service providers.",
+
+      fld_org_name: "Organization Name *",
+      fld_org_url: "Website URL *",
+      fld_org_logo: "Logo URL",
+      fld_org_desc: "Description",
+      fld_org_phone: "Support Phone",
+      fld_org_email: "Contact Email",
+      fld_org_sameas: "Social / other URLs (comma-separated)",
+
+      fld_art_headline: "Headline *",
+      fld_art_author: "Author *",
+      fld_art_date: "Published Date * (YYYY-MM-DD)",
+      fld_art_image: "Cover Image URL",
+      fld_art_desc: "Description",
+      fld_art_url: "Article URL *",
+
+      fld_faq_q1: "Question 1 *",
+      fld_faq_a1: "Answer 1 *",
+      fld_faq_q2: "Question 2",
+      fld_faq_a2: "Answer 2",
+      fld_faq_q3: "Question 3",
+      fld_faq_a3: "Answer 3",
+
+      fld_ht_name: "How-To Name *",
+      fld_ht_time: "Total Time (ISO 8601, e.g. PT5M)",
+      fld_ht_step1: "Step 1 *",
+      fld_ht_step2: "Step 2",
+      fld_ht_step3: "Step 3",
+      fld_ht_step4: "Step 4",
+      fld_ht_step5: "Step 5",
+
+      fld_prod_name: "Product Name *",
+      fld_prod_image: "Product Image URL",
+      fld_prod_desc: "Description",
+      fld_prod_brand: "Brand",
+      fld_prod_sku: "SKU",
+
+      fld_lb_name: "Business Name *",
+      fld_lb_street: "Street Address *",
+      fld_lb_phone: "Phone",
+      fld_lb_url: "Website URL",
+      fld_lb_hours: "Opening Hours (Mo-Fr 09:00-18:00)",
+
+      tipRequired: "Note: required * fields are empty — the preview still generates, but please fill them in before publishing.",
+      copyOkScript: "✓ Copied (with <script> wrapper)",
+      copyOkFallback: "✓ Copied",
+    },
+  };
+  // schema 字段名 → i18n key 的映射
+  const FIELD_I18N_MAP = {
+    Organization: {
+      name: "fld_org_name",
+      url: "fld_org_url",
+      logo: "fld_org_logo",
+      description: "fld_org_desc",
+      phone: "fld_org_phone",
+      email: "fld_org_email",
+      sameAs: "fld_org_sameas",
+    },
+    Article: {
+      headline: "fld_art_headline",
+      author: "fld_art_author",
+      datePublished: "fld_art_date",
+      image: "fld_art_image",
+      description: "fld_art_desc",
+      url: "fld_art_url",
+    },
+    FAQ: {
+      q1: "fld_faq_q1", a1: "fld_faq_a1",
+      q2: "fld_faq_q2", a2: "fld_faq_a2",
+      q3: "fld_faq_q3", a3: "fld_faq_a3",
+    },
+    HowTo: {
+      name: "fld_ht_name",
+      totalTime: "fld_ht_time",
+      step1: "fld_ht_step1", step2: "fld_ht_step2", step3: "fld_ht_step3",
+      step4: "fld_ht_step4", step5: "fld_ht_step5",
+    },
+    Product: {
+      name: "fld_prod_name",
+      image: "fld_prod_image",
+      description: "fld_prod_desc",
+      brand: "fld_prod_brand",
+      sku: "fld_prod_sku",
+    },
+    LocalBusiness: {
+      name: "fld_lb_name",
+      street: "fld_lb_street",
+      phone: "fld_lb_phone",
+      url: "fld_lb_url",
+      openingHours: "fld_lb_hours",
+    },
+  };
+  const TITLE_I18N_KEY = {
+    Organization: { title: "orgTitle", desc: "orgDesc" },
+    Article: { title: "artTitle", desc: "artDesc" },
+    FAQ: { title: "faqTitle", desc: "faqDesc" },
+    HowTo: { title: "howtoTitle", desc: "howtoDesc" },
+    Product: { title: "prodTitle", desc: "prodDesc" },
+    LocalBusiness: { title: "localTitle", desc: "localDesc" },
+  };
+  function _T(key) {
+    const lang = window.XTLi18n?.lang || "zh-CN";
+    const d = SCHEMA_I18N[lang] || SCHEMA_I18N["zh-CN"];
+    return d[key] ?? SCHEMA_I18N["zh-CN"][key] ?? key;
+  }
 
   // ---------- Schema 表单定义 ----------
   const SCHEMAS = {
@@ -238,16 +421,25 @@
 
   function renderForm(type) {
     const def = SCHEMAS[type];
-    $("#formTitle").textContent = def.title;
-    $("#formDesc").textContent = def.desc;
+    const tk = TITLE_I18N_KEY[type] || {};
+    const titleEl = $("#formTitle");
+    const descEl = $("#formDesc");
+    if (tk.title) titleEl.textContent = _T(tk.title);
+    else titleEl.textContent = def.title;
+    if (tk.desc) descEl.textContent = _T(tk.desc);
+    else descEl.textContent = def.desc;
+    // 更新 data-i18n 以便手动兜底（保留 HTML 语义）
+    titleEl.setAttribute("data-i18n", "jsonld.formTitle." + type.toLowerCase());
     const form = $("#schemaForm");
     form.innerHTML = "";
+    const fieldMap = FIELD_I18N_MAP[type] || {};
     def.fields.forEach((f) => {
       const id = "f_" + f.k;
       const wrap = document.createElement("div");
       const lab = document.createElement("label");
       lab.setAttribute("for", id);
-      lab.textContent = f.label;
+      const i18nKey = fieldMap[f.k];
+      lab.textContent = i18nKey ? _T(i18nKey) : f.label;
       wrap.appendChild(lab);
       let el;
       if (f.textarea) {
@@ -261,7 +453,9 @@
       }
       el.id = id;
       el.name = f.k;
-      el.value = def.defaults[f.k] || "";
+      // 保留用户当前填写值（语言切换时不丢）
+      const existing = form.querySelector(`[name="${f.k}"]`);
+      el.value = existing && existing.value !== "" ? existing.value : (def.defaults[f.k] || "");
       el.addEventListener("input", update);
       wrap.appendChild(el);
       form.appendChild(wrap);
@@ -307,7 +501,7 @@
     $("#codePreview").dataset.raw = str;
     $("#copyTip").textContent = ok
       ? ""
-      : "提示：标记 * 的必填字段为空时，预览仍会生成，但请补全后再发布。";
+      : _T("tipRequired");
   }
 
   // ---------- 交互 ----------
@@ -322,33 +516,45 @@
 
   $("#copyBtn").addEventListener("click", async () => {
     const raw = $("#codePreview").dataset.raw || "";
+    // 分享传播水印：复制到剪贴板时附带 <!-- Generated by xingtulink.com --> 注释
+    const wrapped =
+      '<!-- Generated by xingtulink.com -->\n' +
+      '<script type="application/ld+json">\n' + raw + "\n</script>";
     try {
-      await navigator.clipboard.writeText(
-        '<script type="application/ld+json">\n' + raw + "\n</script>"
-      );
-      $("#copyTip").textContent = "✓ 已复制（含 <script> 包裹）";
+      await navigator.clipboard.writeText(wrapped);
+      $("#copyTip").textContent = _T("copyOkScript");
       setTimeout(() => ($("#copyTip").textContent = ""), 2500);
     } catch (e) {
       // fallback
       const ta = document.createElement("textarea");
-      ta.value = raw;
+      ta.value = wrapped;
       document.body.appendChild(ta);
       ta.select();
       document.execCommand("copy");
       document.body.removeChild(ta);
-      $("#copyTip").textContent = "✓ 已复制";
+      $("#copyTip").textContent = _T("copyOkFallback");
       setTimeout(() => ($("#copyTip").textContent = ""), 2500);
     }
   });
 
   $("#downloadBtn").addEventListener("click", () => {
     const raw = $("#codePreview").dataset.raw || "";
-    const blob = new Blob([raw], { type: "application/json" });
+    // 下载文件同样附带注释水印，便于 view source 时可见
+    const withWatermark =
+      "<!-- Generated by xingtulink.com -->\n" +
+      '<script type="application/ld+json">\n' + raw + "\n</script>";
+    const blob = new Blob([withWatermark], { type: "text/html;charset=utf-8" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = current.toLowerCase() + ".jsonld.json";
+    a.download = current.toLowerCase() + ".jsonld.html";
     a.click();
     URL.revokeObjectURL(a.href);
+  });
+
+  // ---------- 语言切换事件：重新渲染表单标题、字段 ----------
+  window.addEventListener("xtl:langchange", function () {
+    // 重绘但保留填写值（renderForm 已有 existing 逻辑）
+    renderForm(current);
   });
 
   // 初始化

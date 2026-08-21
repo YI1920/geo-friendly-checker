@@ -15,14 +15,14 @@
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="/">
-        <img src="/img/logo.png" alt="星图邻 XingTuLink" />
+        <img src="/img/logo.png" alt="星图邻 XingTuLink" data-i18n-attr="alt:brand.alt" />
       </a>
       <nav class="nav-links" style="position:static;display:flex;background:transparent;border:0;padding:0;">
-        <a href="/">首页</a>
-        <a href="/tools/geo-checker/">GEO 检测</a>
-        <a href="/tools/json-ld-generator/">JSON-LD 生成器</a>
-        <a href="/about-geo/">关于 GEO</a>
-        <a class="nav-cta" href="https://zsoftym.com/" data-external="1">栈上月明官网 →</a>
+        <a href="/" data-i18n="nav.home">首页</a>
+        <a href="/tools/geo-checker/" data-i18n="nav.geo-check">GEO 检测</a>
+        <a href="/tools/json-ld-generator/" data-i18n="nav.jsonld">JSON-LD 生成器</a>
+        <a href="/about-geo/" data-i18n="nav.about-geo">关于 GEO</a>
+        <a class="nav-cta" href="https://zsoftym.com/" data-external="1" data-i18n="nav.zsoftym">栈上月明官网 →</a>
       </nav>
     </div>
   </header>
@@ -33,14 +33,14 @@
         <div style="font-size:96px;font-weight:800;line-height:1;background:var(--brand-1);-webkit-background-clip:text;background-clip:text;color:transparent;">
           404
         </div>
-        <h1 style="margin-top:18px;">页面走丢了</h1>
+        <h1 style="margin-top:18px;" data-i18n="404.h1">页面走丢了</h1>
         <p class="lead" style="margin:14px auto 30px;">
-          抱歉，你访问的页面不存在或已被移动。<br />
-          你可以返回首页，或直接前往我们的工具。
+          <span data-i18n="404.lead.part1">抱歉，你访问的页面不存在或已被移动。<br /></span>
+          <span data-i18n="404.lead.part2">你可以返回首页，或直接前往我们的工具。</span>
         </p>
         <div class="hero-cta" style="justify-content:center;">
-          <a class="btn btn-primary" href="/">返回首页</a>
-          <a class="btn btn-ghost" href="/tools/geo-checker/">去 GEO 检测</a>
+          <a class="btn btn-primary" href="/" data-i18n="btn.return-home">返回首页</a>
+          <a class="btn btn-ghost" href="/tools/geo-checker/" data-i18n="btn.go-geo">去 GEO 检测</a>
         </div>
       </div>
     </section>
@@ -49,12 +49,19 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-bottom" style="border:0;margin-top:0;">
-        <span>© 2026 西安栈上月明软件科技有限公司 · 星图邻 XingTuLink</span>
-        <span><a href="https://zsoftym.com/" data-external="1">zsoftym.com</a></span>
+        <span data-i18n="footer.copyright">© 2026 西安栈上月明软件科技有限公司 · 星图邻 XingTuLink</span>
+        <span style="display:inline-flex;align-items:center;gap:14px;">
+          <a href="https://github.com/ZSoftYM/geo-friendly-checker" target="_blank" rel="noopener noreferrer" title="开源仓库 · GitHub" aria-label="GitHub" style="color:inherit;display:inline-flex;align-items:center;gap:4px;" data-i18n-attr="title:brand.github.title">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.63 22.42c.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.27-5.24-5.65 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.04 11.04 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.73.8 1.18 1.82 1.18 3.07 0 4.39-2.69 5.36-5.25 5.64.41.35.78 1.04.78 2.11 0 1.52-.01 2.75-.01 3.13 0 .3.21.66.79.55A11.5 11.5 0 0 0 12 .5z"/></svg>
+            <span style="font-size:13px;">GitHub</span>
+          </a>
+          <a href="https://zsoftym.com/" data-external="1">zsoftym.com</a>
+        </span>
       </div>
     </div>
   </footer>
 
+  <script src="/public/i18n.js"></script>
   <script src="/public/site.js"></script>
 </body>
 </html>

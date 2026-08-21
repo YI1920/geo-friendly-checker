@@ -14,6 +14,20 @@
 
 官方部署地址：**[https://xingtulink.com](https://xingtulink.com)**
 
+## 🖼 界面预览
+
+### 首页（Landing Page）
+
+[![首页截图](./img/homepage-screenshot.png)](./img/homepage-screenshot.png)
+
+### GEO 友好度检测器
+
+[![GEO 检测器截图](./img/geo-checker-screenshot.png)](./img/geo-checker-screenshot.png)
+
+### JSON-LD 生成器
+
+[![JSON-LD 生成器截图](./img/json-ld-generator-screenshot.png)](./img/json-ld-generator-screenshot.png)
+
 ## 📁 目录结构
 
 ```
@@ -33,7 +47,10 @@
 │   ├── geo-checker.js               检测器逻辑
 │   └── json-ld-generator.js         生成器逻辑
 └── img/
-    └── logo.png                     品牌 Logo
+    ├── logo.png                     品牌 Logo
+    ├── homepage-screenshot.png      首页截图
+    ├── geo-checker-screenshot.png   GEO 检测器截图
+    └── json-ld-generator-screenshot.png JSON-LD 生成器截图
 ```
 
 ## 🚀 本地预览

@@ -15,6 +15,20 @@ This project is a **zero-build, pure-static GEO toolkit** developed and open-sou
 
 Official deployment: **[https://xingtulink.com](https://xingtulink.com)**
 
+## 🖼 Screenshots
+
+### Landing Page
+
+[![Homepage screenshot](./img/homepage-screenshot.png)](./img/homepage-screenshot.png)
+
+### GEO Friendliness Checker
+
+[![GEO Checker screenshot](./img/geo-checker-screenshot.png)](./img/geo-checker-screenshot.png)
+
+### JSON-LD Generator
+
+[![JSON-LD Generator screenshot](./img/json-ld-generator-screenshot.png)](./img/json-ld-generator-screenshot.png)
+
 ## 📁 Project Structure
 
 ```
@@ -34,7 +48,10 @@ Official deployment: **[https://xingtulink.com](https://xingtulink.com)**
 │   ├── geo-checker.js               Checker logic
 │   └── json-ld-generator.js         Generator logic
 └── img/
-    └── logo.png                     Brand logo
+    ├── logo.png                     Brand logo
+    ├── homepage-screenshot.png      Landing page screenshot
+    ├── geo-checker-screenshot.png   GEO Checker screenshot
+    └── json-ld-generator-screenshot.png JSON-LD Generator screenshot
 ```
 
 ## 🚀 Local Preview
