@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>JSON-LD 生成器 | 星图邻</title>
+  <meta name="description" content="在线 JSON-LD Schema 生成器，支持 Organization、Article、FAQ、HowTo、Product、LocalBusiness 6 种类型。表单填写即可生成符合 Schema.org 标准的结构化数据代码，一键复制。" />
+  <link rel="canonical" href="https://xingtulink.com/tools/json-ld-generator/" />
+  <link rel="icon" type="image/png" href="/img/logo.png" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta name="applicable-device" content="pc,mobile" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <link rel="stylesheet" href="/public/styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JSON-LD 结构化数据生成器",
+    "url": "https://xingtulink.com/tools/json-ld-generator/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
+    "featureList": "Organization、Article、FAQ、HowTo、Product、LocalBusiness 等 Schema 类型生成",
+    "publisher": { "@type": "Organization", "name": "星图邻" }
+  }
+  </script>
+</head>
+<body>
+  <div class="bg-decor"></div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/">
+        <img src="/img/logo.png" alt="星图邻 XingTuLink" />
+      </a>
+      <button class="nav-toggle" aria-label="菜单">☰</button>
+      <nav class="nav-links">
+        <a href="/">首页</a>
+        <a href="/tools/geo-checker/">GEO 检测</a>
+        <a href="/tools/json-ld-generator/" class="active">JSON-LD 生成器</a>
+        <a href="/about-geo/">关于 GEO</a>
+        <a href="/contact/">联系我们</a>
+        <a class="nav-cta" href="https://zsoftym.com/" data-external="1">栈上月明官网 →</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section style="padding-top:60px;">
+      <div class="container">
+        <span class="eyebrow">免费在线工具</span>
+        <h1>JSON-LD 结构化数据生成器</h1>
+        <p class="lead">
+          选择 Schema 类型，填写字段，实时生成可粘贴的 JSON-LD 代码。
+          覆盖 90% 的 GEO 引用场景，符合 Schema.org 标准。
+        </p>
+      </div>
+    </section>
+
+    <section style="padding-top:30px;">
+      <div class="container">
+        <div class="tabs" id="schemaTabs">
+          <button class="tab active" data-type="Organization" type="button">Organization 组织</button>
+          <button class="tab" data-type="Article" type="button">Article 文章</button>
+          <button class="tab" data-type="FAQ" type="button">FAQ 问答</button>
+          <button class="tab" data-type="HowTo" type="button">HowTo 教程</button>
+          <button class="tab" data-type="Product" type="button">Product 产品</button>
+          <button class="tab" data-type="LocalBusiness" type="button">LocalBusiness 本地商家</button>
+        </div>
+
+        <div class="tool-wrap">
+          <div class="tool-panel">
+            <h3 id="formTitle">Organization · 组织信息</h3>
+            <p class="tip" id="formDesc">填写下方字段，右侧代码会实时更新。</p>
+            <form id="schemaForm"></form>
+          </div>
+
+          <div class="tool-panel">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
+              <h3 style="margin:0;">实时预览</h3>
+              <div>
+                <button id="copyBtn" class="btn btn-ghost" type="button">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
+                  复制代码
+                </button>
+                <button id="downloadBtn" class="btn btn-ghost" type="button">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M4 21h16"></path></svg>
+                  下载
+                </button>
+              </div>
+            </div>
+            <p class="tip">将代码粘贴到网页 <code>&lt;head&gt;</code> 或 <code>&lt;body&gt;</code> 末尾，包裹在 <code>&lt;script type="application/ld+json"&gt;...&lt;/script&gt;</code> 中即可。</p>
+            <pre class="code" id="codePreview"></pre>
+            <div id="copyTip" class="tip" style="min-height:18px;color:var(--ok);"></div>
+
+            <hr class="hr" />
+            <h3>使用说明</h3>
+            <ol style="color:var(--text-soft);font-size:14.5px;line-height:1.8;padding-left:20px;">
+              <li>选择左侧对应 Schema 类型，填写必填字段。</li>
+              <li>点击「复制代码」或「下载」获取生成的 JSON-LD。</li>
+              <li>将代码嵌入到网站 HTML 中 <code>&lt;head&gt;</code> 区域。</li>
+              <li>使用 <a href="https://search.google.com/test/rich-results" data-external="1" style="color:var(--brand-3);">Google Rich Results Test</a> 验证。</li>
+            </ol>
+            <div class="cta-banner" style="margin-top:24px;padding:24px;">
+              <h3 style="margin:0 0 6px;">批量生成 · 长期 GEO 监控？</h3>
+              <p style="margin:0 0 14px;">栈上月明提供企业级 GEO 优化与结构化数据服务。</p>
+              <a class="btn btn-primary" href="https://zsoftym.com/" data-external="1">联系栈上月明 →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="/">
+            <img src="/img/logo.png" alt="星图邻" />
+          </a>
+          <p style="margin-top:14px;">在线工具与开源项目发布平台。</p>
+        </div>
+        <div>
+          <h4>工具</h4>
+          <ul>
+            <li><a href="/tools/geo-checker/">GEO 友好度检测</a></li>
+            <li><a href="/tools/json-ld-generator/">JSON-LD 生成器</a></li>
+            <li><a href="/about-geo/">GEO 知识库</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>公司</h4>
+          <ul>
+            <li><a href="https://zsoftym.com/" data-external="1">栈上月明官网</a></li>
+            <li><a href="/contact/">联系我们</a></li>
+            <li><a href="/contact/#privacy">隐私政策</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>联系</h4>
+          <ul>
+            <li>电话：+86 176 2902 0227</li>
+            <li>邮箱：guohao@zsymtech.cn</li>
+            <li>西安 · 陕西</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 西安栈上月明软件科技有限公司 · 星图邻 XingTuLink</span>
+        <span><a href="https://zsoftym.com/" data-external="1">zsoftym.com</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/public/site.js"></script>
+  <script src="/public/json-ld-generator.js"></script>
+</body>
+</html>
